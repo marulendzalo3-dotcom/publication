@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>I do not like it here — Ndzalo Marule</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #e9e4dc;
+    color: #222;
+    transition: 0.3s ease;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    height: 70px;
+    background: #111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo span {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    opacity: .7;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+button {
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    background: #333;
+    color: white;
+}
+
+button:hover {
+    background: #555;
+}
+
+/* ================= LAYOUT ================= */
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 280px;
+    background: #171717;
+    color: white;
+    padding: 25px 15px;
+    overflow-y: auto;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.toc button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    background: transparent;
+    color: #ddd;
+    padding: 11px;
+}
+
+.toc button:hover,
+.toc button.active {
+    background: #333;
+    color: white;
+}
+
+/* ================= MAIN ================= */
+
+.main {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    padding: 40px 20px 100px;
+}
+
+/* ================= BOOK ================= */
+
+.book {
+    max-width: 850px;
+    margin: auto;
+}
+
+.page {
+    background: white;
+    min-height: 1050px;
+    padding: 80px 90px;
+    box-shadow: 0 8px 35px rgba(0,0,0,.18);
+    border-radius: 3px;
+    position: relative;
+    line-height: 1.8;
+    font-size: 18px;
+    transition: .25s;
+}
+
+.page h1 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 34px;
+}
+
+.page h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.page h3 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.page p {
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+.page ul,
+.page ol {
+    margin: 20px 0 20px 30px;
+}
+
+.page blockquote {
+    border-left: 4px solid #333;
+    padding-left: 20px;
+    margin: 25px 0;
+    font-style: italic;
+}
+
+.cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 1050px;
+}
+
+.cover h1 {
+    font-size: 55px;
+    line-height: 1.15;
+}
+
+.cover .author {
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+}
+
+/* ================= CONTROLS ================= */
+
+.controls {
+    max-width: 850px;
+    margin: 25px auto;
+}
+
+.progress {
+    height: 6px;
+    background: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #111;
+    transition: .3s;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.navigation button {
+    background: #111;
+    min-width: 120px;
+}
+
+.navigation button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.counter {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    max-width: 850px;
+    margin: 0 auto 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark {
+    background: #0c0c0c;
+    color: #ddd;
+}
+
+body.dark .page {
+    background: #1b1b1b;
+    color: #eee;
+}
+
+body.dark .progress {
+    background: #444;
+}
+
+body.dark .progress-bar {
+    background: white;
+}
+
+body.dark .page-number {
+    color: #aaa;
+}
+
+body.dark .search-box input {
+    background: #222;
+    color: white;
+    border-color: #555;
+}
+
+/* ================= MOBILE ================= */
+
+.mobile-menu {
+    display: none;
+}
+
+@media(max-width: 800px) {
+
+    .sidebar {
+        display: none;
+        width: 280px;
+        z-index: 2000;
+    }
+
+    .sidebar.open {
+        display: block;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px 10px 80px;
+    }
+
+    .page {
+        padding: 50px 30px;
+        min-height: 800px;
+        font-size: 16px;
+    }
+
+    .page h1 {
+        font-size: 28px;
+    }
+
+    .cover h1 {
+        font-size: 38px;
+    }
+
+    .mobile-menu {
+        display: inline-block;
+    }
+
+    header {
+        padding: 0 12px;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    .header-buttons button {
+        padding: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        I DO NOT LIKE IT HERE
+        <span>by Ndzalo Marule</span>
+    </div>
+
+    <div class="header-buttons">
+        <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+        <button onclick="changeFont(-1)">A−</button>
+        <button onclick="changeFont(1)">A+</button>
+        <button onclick="toggleDark()">◐</button>
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <!-- ================= TABLE OF CONTENTS ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <h2>Contents</h2>
+
+        <div class="toc" id="toc"></div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search this book..."
+            >
+
+            <button onclick="searchBook()">Search</button>
+
+        </div>
+
+
+        <div class="book">
+
+            <article class="page" id="pageContent"></article>
+
+        </div>
+
+
+        <div class="controls">
+
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="navigation">
+
+                <button
+                    id="previous"
+                    onclick="previousPage()">
+                    ← Previous
+                </button>
+
+                <div class="counter" id="counter">
+                    Page 1 of 46
+                </div>
+
+                <button
+                    id="next"
+                    onclick="nextPage()">
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* ============================================================
+   BOOK CONTENT
+   ============================================================
+
+   Each object below represents ONE PAGE.
+
+   Replace the sample text with the actual text from your
+   document.
+
+   Example:
+
+   {
+       title: "DAYDREAM",
+       content: `
+           <p>Your actual page text...</p>
+           <p>Another paragraph...</p>
+       `
+   }
+
+============================================================ */
+
+
+const pages = [
+
+    /* PAGE 1 */
+
+    {
+        title: "",
+        cover: true,
+        content: `
+            <div class="cover">
+
+                <h1>
+                    I do not<br>
+                    like it here
+                </h1>
+
+                <div class="author">
+                    Ndzalo Marule
+                </div>
+
+            </div>
+        `
+    },
+
+
+    /* PAGE 2 */
+
+    {
+        title: "",
+        content: `
+            <h2>I do not like it here</h2>
+
+            <p>
+                Ndzalo Marule
+            </p>
+
+            <p>
+                Self-published by Ndzalo Marule
+            </p>
+
+            <p>
+                November 2024
+            </p>
+        `
+    },
+
+
+    /* PAGE 3 — CONTENTS */
+
+    {
+        title: "CONTENTS",
+        content: `
+
+            <h2>Contents</h2>
+
+            <p>DEDICATION</p>
+
+            <p>See what I saw: the introduction</p>
+
+            <p>DAYDREAM</p>
+
+            <p>APE BORN-FREE</p>
+
+            <p>LOST BATTLES, LOST MINDS</p>
+
+            <p>OUTSIDE THE BOX</p>
+
+            <p>MATERIAL BECOMES THE DEFINATION</p>
+
+            <p>MY VALUE</p>
+
+            <p>LIVING ON BORROWED TIME</p>
+
+            <p>I THINK I AM LOSING MY MIND MAMA</p>
+
+        `
+    },
+
+
+    /* PAGE 4 */
+
+    {
+        title: "DEDICATION",
+        content: `
+
+            <h2>DEDICATION</h2>
+
+            <p>
+               This book is dedicated to my parents and friends, whose unwavering support has been my foundation. May we collectively strive to cultivate values that rise above the limitations set by a system that continues to exploit the resources we bear, while building barriers to our true potential. Let us seek a path toward deeper understanding, compassion, and collective growth.
+ 
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 5 */
+
+    {
+        title: "See what I saw: the introduction",
+        content: `
+
+            <h2>See what I saw: the introduction</h2>
+
+            <p>
+                “We see throughout the world extremes of poverty and riches, abundance and at the same time starvation, we have class distinction and racial hatred, the stupidity of nationalism and the appalling cruelty of war. There is exploitation of man by man; religions with their vested interests have become the means of exploitation, also dividing man from man. There is anxiety, confusion, hopelessness, frustration. We see all this. It is part of our daily life. Caught up in the wheel of suffering, if you are at all thoughtful you must have asked yourself how these human problems can be solved. Either you are conscious of the chaotic state of the world, or you are completely asleep, living in a fantastic world, in an illusion. If you are aware, you must be grappling with these problems”.
+A view expressed decades ago but remains relevant to date with more and more problems arising. Frankly we as black people remain most disadvantaged with little or no access to opportunity as to satisfy our humanly needs and get the exciting experience this vest world has to offer. The lucky few rarely aid ,and life in townships and rural areas remains a struggle. The people stagnant and self-development is not a norm in most of our societies but there are behaviours that considered normal even though the consequences are detrimental to our bodies, souls and minds. 
+We remain mere objects in our own societies under a draining system set up to exploit the masses off their resources and time. We as black youth hate ourselves and have lost a lot of respect for ourselves and are completely willing to fall in line with the system. Repeating the same mistake generations before us did, a reality most are blind to see or choose to ignore. 
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 6 */
+
+    {
+        title: "DAYDREAM",
+        content: `
+
+            <h2>DAYDREAM</h2>
+
+            <p>
+			A second chance is the white men willing to give away some of his profits for the improvement of our society and for reconciliation of the past in more than a commission to justify  the crimes committed under the apartheid chapter? can we rebuild wealth and give back to our communities? Is it possible to make the system work for more people rather than exploit the labour of the masses all while keeping people awake to facts rather than blissfulness of ignorance? Can we have pride in being African? Does this modern economy support the welfare and mental health of the people? 
+ Multiple studies have documented how the stresses of everyday discrimination On parents or other caregivers, such as being associated with negative Stereotypes, can have harmful effects On caregiving behaviours and adult Mental health. And when caregivers’  Mental health is affected, the Challenges of coping with it can cause An excessive stress response in their Children. But we can prevent lasting harm if we work together.[it’s been proven} black men are being destroyed by the system and they always die prematurely because of the environments they constantly find themselves in, a struggle to stay alive. we always make time for alcohol ‘and reproduction always wanting to leave behind a legacy, the good times the only times we are ever truly present otherwise overcame by our reality. is it possible to rehabilitate all those addicts roaming the streets looking for the next plug and provide affordable therapy for the people to help the masses heal from generational trauma and ongoing struggles so that they get to live up to their full potential? or is the stage filled with enough rich persons that there’s no space for the natives and our struggle pleases those in power.  We must get rid of the notion of thinking without some kind of funding or injection of a lump sum of money, they are doomed to fail.
+The black men are under threat in the streets either trying to make a living, under the influence or risk losing their lives once they gain enough influence economically or politically. Drug control wasn’t forced on the tsotsis in the ghettos so the evolution of what is being sold at a corner by dealers is scary, the gents go from herbs straight to hard drugs easily accessible on these streets which bury our dreams. You don’t even have to go pharmacy for drugs anymore. Even the apartheid regime acknowledged substance abuse as threat to communities one far more deadly than the brewing uprisings in what they said was  “ a form of terrorism that is more dangerous than the armed terrorism we are familiar with on our country’s borders.” neglecting the children allowing them to witness what we take for sanity making the use of substance a norm in our communities as a mechanism of coping with the physiological stresses we encounter in our society means this cycle will continue to reoccur affecting more and more of our black youths. Drug abuse is defined as the inappropriate use of or addiction to drugs or intoxicating chemical substances, a reality for most in our townships. Those living a sober life a surprise to the masses, preserving the body seems like too much a sacrifice as it comes with a boring lifestyle and full attention of our sorrows we should call for more self discipline in our societies.We keep more social media information (mostly fabricated lies for fame hungry people) and news headlines (which twist the truth to fit the narrative of the owners) to make it through life because books have become boring to most black children, so their past has been easy to erase as most believe what they are taught- the white viewpoint and concepts of the world. We are fascinated by the outside world, yet we don’t seem to care to understand how it came to be. There was never a time where the minds of the people were assessed to check the effects of racism and systematic oppression on the spirits of the people so they were allowed to accept the world as it is, not what it should be. After years of oppression, we only saw the light at the end of the tunnel not the destination, so faith became our currency. Now fighting for the highest earning through madibas key (a failing educational system encouraging uniform behaviour sometimes to work in completely unrelated industries because money is virtue, and the acquisition should be prioritized above all else to meet the needs of the people and fill pockets of the elites. The only legal path a black person can take to acquire large sums of money without handouts just working hard, a lucky few are left fortunes if their parents were wise enough to venture into business and indexes.
+There is need for some radical economic changes to allow more people to acquire stocks in the right industries. The development of more black owned businesses-innovative ones that will solve problems we have within our borders.  In Niger They led calls against the rising cost of living, poor governance and the presence of the French forces. As colonial powers continued to exercise their power over African countries although they have been exploiting the Continent for hundreds of years. There is a serious need for Service providers to ensure that people access a large pool of resources and opportunities. Especially those that stand to benefit the masses at large so nations are dispossessed of Resources That will be expensive under the control of the masses serving best as costumers.
+Land distribution for both commercial [market expansion for introduction of new markets]and non-commercial [residential as majority of the country remains overcrowded in townships and rural areas without access to any resources.  Where most of the money flows with hundreds of dollars circulating out of communities only to come back at the end of each month] uses and digitalisation of certain departments could be used to boost skills development in once disadvantages communities and see the further growth of the already rich communities by allowing them to spearhead the initiatives to develop surrounding lower income homes therefore reducing the inequality that continues to run rapid in our peace lacking societies. We need to start producing our own goods as well as valuing our own viewpoint as the world has become euro-focused in perspective as well as development as Africa lingers behind in terms of development and people remain poverty stricken.
+We need to understand foreign concepts but not forget our own African studies and not value the European point of view over our own as our methods sustained many generations before the arrival of the white man on our coasts. We need a welfare focused system one that will bring the best out of everyone making sure we all put in our best efforts to transform into a more progressive nation where each hand contributes to the betterment of our communities. Communities that will not suppress our spirits and encourage all within to thrive for excellence. equality seems impossible to achieve considering how long we’ve been living under this democratic system with little change to show.  The SABC wrote “The ANC must emerge from this 55th conference with a clear solution to resolve the deeply deteriorating material conditions of South Africans.” Solutions to why there are huge differences in how live and what how we perceive being broke considering geography and ethnicity. sometimes even the nationality. Why is it that we continue to suffer in our native land and inequality remains high despite the actions of our people to move out of hardship.
+We leave our own gardens to die while we water others. Selling time mostly never getting enough to make the most out of our lives. The system at work in south Africa gave consumer and movement rights but the peoples trauma was allowed to continue in the hearts of the families.  Brett Herron said: “It’s important to the victims of apartheid injustices and their descendants that they don’t disappear through the cracks of political expediency. It’s important to the principles of accountability, justice and peace.” all for an illusion that we were now ‘free’ and that things would get better but nothing much is changing, and cases remain in the freezers. The things in history books are still a reality for many south Africans. The voices of activism seem to have been silenced as the dinosaurs that witnessed the savagery of the apartheid system continue to steal and abuse their state power forgetting the real reason behind the formation of that liberal movement. The livelihoods in hoods have not improved much and many live in uncertainty with nothing but faith in a foreign god and sacrificing all that we can to water flowers of other gardens neglecting our own. Can we really say we are living the lives we dream of or are we taking anything to get by just make ends meet?
+The environments we live in only truly seem like home when we intoxicated, and sobriety is rare amongst the black folk where I’m from. An old man once told me that even with the people in his life concerned about his drinking habit we won’t go to rehab because his still enjoying the lifestyle and that’s just how he gets by. I wonder if building more mental and rehabilitation institutions won’t help make society safer. a specialised unit of patrol officers, a joint informal sector model where business owners collaborate. Ideas of advancing the nation is through using youth and their thinking capacities and growing them to be better equipped in skills so that they don’t have to turn to crime as an alternative. Criminals possess the wealth in our societies.
+The wealth is not what we are asking for a share in it was just inherited from their ancestors who had ‘earned’ the money off exploiting the labour, what we want is retribution of the people. Africans collaborate and participate in their own destruction and act as agents of self-dehumanization by (a) adopting another people’s teaching that is inconsistent with African culture and (b) failing to develop a science that represents and expresses the reality of African people. some white people unfortunately also inherited the bad attitudes of their forefathers and still bear hatred for black people. the economy literally declines when the people decide to unify and stay at home. The natives have lost their dominance on the land in terms of everything and are now just at mercy off the system. even their views and way of life have been altered and African viewpoints are not taken to head and a lot of people are kept in the ‘dark’ as insufficient skills development programs exist in Africa and South Africa’s unemployment statistics state  Incidence of long-term unemployment among women is higher than the national average. South Africa's unemployment rate decreased by 0,2 of a percentage point to 32,7% in Q4:2022 compared to Q3:2022. The people have been made to believe that they are inferior constantly seeking validation and appreciation from the ‘baas’ rather than further advance their own people. Women feeling the effect more severely. 
+The environments we are kept don’t have enough racial distribution to allow for us to create networks and destroy racial hatred and tribal stereotypes young and rather than mobilising to change our circumstances we wait for some sort of hand out from a messiah. Children of the sun scared to be under the sun to put food on their plates. More reliant on a God then themselves forgetting that they themselves are God’s gift to this world. I wonder what we could achieve together without feeling the pressures of the sequence of life allowing ourselves to endure the struggles. How does the love we have for our heroes and lifestyle icons transfer to our fellow brothers and sisters? When will we love being African? Wearing the melanin proudly, sisters not having to conform to social norms of beauty exposing their beauty to the wrong audiences but start gracing the people with love and nurture the nation. Can the people build an environment that will sustain itself and not look for handouts? 
+To fully understand what it means to be African, not look at it as a point of prospective but rather act and live as Africans in Africa not an illusion that we are part of some bigger mission to advance the world, while our home still depends on handouts from other powers and our children suffer only to become slaves to other people’s, trapped in what has come to be known as the hood mentality and time remains their only assets. Under the gaze of people who continue to exercise their control over most our countries and resources, watching the people suffer without remorse. Although they have gained their “independence “through election. Conflicts and development are meditated by foreign powers often with little understanding of the true impact these events on the lives of the civilians, the disruptions and influence they have on the mental and physical state of those affected. Maybe one day we will have a government that builds roads not because there’s some commodity that is on demand from that community but rather just delivering services to even the most isolated people. As the world’s only option to progress seems like to trade more and be open to the idea of globalisation, stronger domestic markets and sustainability are not a reality for most African countries unless there is a radical change of economic policies.
+The value of an African countries’ economy is determined but what they offer the rest of the world. Global demand for these goods provides new export and market opportunities for African countries and firms. The active provision of market intelligence and business services can increase supply and demand linkages, lower barriers to value chain and market entry, and facilitate more complex, diverse and higher-value-added exports. We rarely process our own resources and most raw materials are sold back at higher prices. Big companies and international foundations continue to lead the initiative for development and the people are standing aside simply waiting for their surroundings to change.  Recommendations from UNCTAD include: 
+Improve the capacity of people and firms to emulate and innovate
+Support firms to innovate
+Expand the set of technologies and infrastructure
+Reinforce linkages between industries and encourage the use of local content and suppliers by domestic firms
+Enhance the access of small and medium-sized enterprises to alternative finance
+Maximize the potential benefits of the African Continental Free Trade Area for export diversification
+Strengthen efforts to improve trade and financial data
+Put recommendations into practice
+No efforts to enforce such changes in our communities as been taken and we continue to keep the money out of it. Using money barely saving some for our advancements just growing already established brands rather than starting, marketing and expanding already black owned businesses to grow in a way that will do the domestic market good. Bring the goods to the people. RCL foods is still offering bursaries an effort at least from the baby company whose mother has been operating since apartheid. Generations of consumers.
+The skills that we need to produce our own goods are not easily assessable and often people live with their dreams unfulfilled. government should play a critical role in bridging the gap between higher education and industry to address youth graduate unemployment. It also calls for a more cooperative effort between government, higher learning institutions and employers to create job opportunities for youth graduates in South Africa. I dream of place where living doesn’t have to be so tiring for our souls and how the sacrifices that have been made and those yet to be made for the progress of our lives should be cherished as well as memories of all those whose vision liberated people and those who spilled their blood to water the flowers of freedom. Where “disadvantaged” is only used in current situation rather than being the story of our lives. Where we build our own apps and technologies not to compete but make the lives of the people easier. Teach the children early so they understand that the world is not good and even lives have prices now, so they understand that the lives of the people are at stake. 
+When is the time coming for the people to solve their own problems and to rewrite their history. rewrite the future so we can behave different. we need more black people to propose ideas and implement changes that will have a progressive effect on our lives. Learn to love and respect each other considering all factors. 
+sometimes I just needed to talk to someone instead I daydreamed.
+
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 7 */
+
+    {
+        title: "APE BORN-FREE",
+        content: `
+
+            <h2>APE BORN-FREE</h2>
+
+            <p>
+               There is continuous development all around the world, but it seems that the black majority is still stuck in poverty and the cities that remain are a legacy of the colonial history showing little innovation and progress.  As of 2024, around 13.2 million people in South Africa are living in extreme poverty, with the poverty threshold at 2.15 U.S. dollars daily. This means that 139,563 more people were pushed into poverty compared to 2023. Moreover, the headcount was forecast to increase in the coming years.  Until we understand that no one is coming to save us, that we need to develop our own systems, we will continue to fall to or fall in line with the system. Translate ‘democracy’ to your native language, I can guess that you cannot because the concept is not African in its origin thus, I doubt it should continue to be enforced on the people. Africa isn’t developing fast enough because leaders are not addressing the problems of the people rather they abuse power. This is an ongoing trend amongst most African countries with corruption, greed and power hunger being displayed by various leaders even long after attaining their ‘independence’ from former oppressors. Today we find ourselves in a powerless position because we are ill-equipped and systematically miseducated. We are not taught the necessary skills that will enable us to grow our people to better welfare, finances and relationships. our communities continue to depend on governments and business as their problems grow worse. Rather we are isolated, separated, told we are all different, modernised, laboured, and ultimately sell everything back to ourselves if it is not already imported from elsewhere. your history was taken away from you, you have forgotten the powers you have. The ability to accumulate and keep wealth seems to have escaped our communities. Dispossession, exploitation and an inferiority complex is what we have inherited from what was savage rule. The environment in which we are kept makes it impossible for us to say we are ‘born Frees’ they show little or no senses of there being freedom in the society Dysfunctional families, substance abuse, absent fathers, and crime are residents in the streets where we are from.
+Black economy will continue to struggle as long we are under the consumer effect and continually moving away instead of bettering the places that raised us good or bad. The consumer effect can be said to an idea put into a consumer’s mind to always buy what is considered ‘quality’ or ‘luxurious’ while there are much cheaper products available. For example, the average student dreams of buying a German car soon after getting a permanent job (God given in this country of ours). But they miss that point where they send out money to German company BMW and oil which we don’t produce. None of the money we make goes back to our communities and therefore there is less money to be put on the development of welfare granting people freedom and not for legislature to state that is the case. Labels are all we after these days, iPhone to capture the fake smiles we wear, marketing is everywhere exposes you to things to consume good or bad. fighting demons that lay in our lineage trying to escape the repeated cycle of poverty. Men rarely speak because of the image that the system has set up for them. We are not speaking up.  In total, 6 083 people were murdered in the first quarter of 2022. With 2.9% of convicted criminals serving time in South African prisons being women, it’s safe to say that most of these murders were committed by men. Our women, children, and indeed men, are constantly being traumatised by the aggression and violence perpetrated by men. As a result of this constant anguish and grief, we are dealing with high levels of post-traumatic stress disorder and depression as a country. 
+Black people need to help build themselves their wealth back act as one to accomplish a better standard for all. Empires must rise in Afrika. Let the people be contributors in society.  But that starts with freeing our minds understanding the subliminal messages we get from ancestors telling us this not the freedom they died for. What are these brands bringing to your life? What’s the effect of the consumption of these goods?
+We need to establish systems we will understand, systems that will benefit everyone in our communities meanwhile reducing if not eradicate the problems everyone must face because of a failing system. Feed ourselves nutritional foods, bath ourselves with natural extracts, cover our bodies with the finest threads. Ubuntu is dying and ‘makhi’ as become our biggest competitors rather than collaborators. community love has migrated to foreign streets along with our minerals which continue to be bought by European companies on stocks In 2021, the mining sector in South Africa contributed an added value of approximately 219.5 billion South African Rand (roughly 12.8 billion U.S. dollars) to the country's Gross Domestic Product (GDP). Slaves were on the stock exchange market where minerals are now sold, we can imagine what will be sold next? Money has already gone digital, and we still cannot count enough black millionaires. The rate of return for gold investments fluctuated significantly during the period from 2002 to 2022 but generated positive returns in most years of the observed period.  The return of gold as an investment reached almost 25 percent in 2020, and the annual average price of gold increased overall since 2015. The rate of return was 0.44 percent in 2022. Will we have enough successful black people to leave the planet as efforts are already being made to start life elsewhere. Problem we do not want to build one person at time, we do not fully understand the time and measures that are needed to fully restore our legacies because many are  torn down. Everyone feels important that’s a built-in feature in all our personalities. For suffering people, we cannot afford to be prideful. Imagine if instead of helping workers strike unions taught mine workers how to invest money in the minerals which they risk their health and lives for.
+The people’s needs are not attended, and our society remain underdeveloped yet these people still seek foreign investment so they can eat more. Considering  statistics South Africa’s Census 2022 showed that the population of South Africa increased from 51,7 million in 2011 to more than 62 million in 2022; a growth rate of 1,8% in the intercensal period. Females constituted 51,5% of the total population, while 48,5% were males.  . This creates a greater demand for a reliable supply of potable water. Rural areas struggle most when it comes to water supply, loadshedding is worsening and government isn’t proposing any innovative ways to generate ideas for renewable methods to produce electricity choosing to stick to coal.
+Crime  Over the past few years, South Africa has seen rising levels of crime. The issue of crime is one that is experienced by almost all citizens, irrespective of their economic status or where they live. Even the language I’m using now is not my own. A struggle for me to truly express myself freely, laws are in favour of those with enough money in their accounts, but the justice system has its loopholes. the capitalist system cannot be reengineered to benefit the black folk, a socialist one seems like the future as envy amongst blacks is accompanied with jealousy, savagery and habitual lying. we need to establish our own industries, produce more of what we use and support more small businesses. National debt is accumulating then what happens when we go to war, and moneys must be repaid Forced alliances, hunger on a larger scale. 
+Leaders are choosing luxury over the people’s needs, pulling strings to achieve their own agendas that guarantee personal gain. Zuma brought along the Guptas on an international state meeting, Ramaphosa’s phala phala scandal is yet to be resolved. Selfishness displayed by politicians is seen in most African countries. instability always roams in African parliaments. We are killing our brothers and sisters. Africa is for Africans. Fear is everywhere, why is it that my sister must fear when a group of brothers approach? Why is it that we drink so much, smoke, cry and starve? This has been going on for long time we are just not making enough progress is it ideas we lack? Even when we do get ideas it’s not that easy to start and transform them from the mental to physical plane.
+
+We do not have the proper knowledge, equipment, or capital to go build our own million-dollar companies that are going to be really making a difference in the communities. Development shouldn’t only be prioritized in cities and urban areas and the people shouldn’t be allowed to die in ghettos and rural areas without ever truly seeing what the world has to offer, the beauty that lies in this vest world of ours. They replace pavements in cities while there are still no proper roads in rural areas. Teen suicides are still high in townships and students face inhumane conditions in an attempt to change their circumstances. Mental health cases are inattentively raising while social work is not administered properly to tackle the social ills we have in our communities, a mass of people decided to just ignore their suffering, they can’t leave either. so, they wait like livestock at the slaughterhouse. graduates are sitting at home or working irrelevant jobs. Mental health is being taken for granted and men fail to act on thoughts and struggle with overcoming those thoughts that keep them feeling inferior. The children are traumatized by this place as it continues to burnout the adults within. Helpless high on faith.  We need to understand that black people have been made a new type of slave, one who is allowed to think but not beyond a certain level only to obey and survive till we kick the bucket We boxed in with one way only visible to us-acquiring recognition that we understand these foreign concepts. An institution’s purpose will not change, a trained labour force is all the capitalists need from the people.  
+The black child has completely forgotten their history and stopped fighting the system under the delusion that they are free and have chosen to follow policies that meant for their oppression and ultimately what will be the degeneration of the black man and black child, the women so isolated reduced to material seekers rather than the healers they were naturally made to be. A people completely committed to a systematic religion which has been manipulated for their psychological enslavement promoting uniform identification with western concepts and allowing those concepts to rule our lives and shape perceptions. The wonder of seeking a deeper connection has been removed, all the love and praise we suppose to give to ourselves are given to an ideology for ensuring the presence of a peasant class that endured horrors to survive. The masses remain separated from nature due to previous laws or labelled trespassers in the land of their ancestors. Abilities are left unexplored, and we pray and not make way for possibilities neglecting the power of our hands and people. if they can turn to God for understanding for their struggles. God being all of us, not just the creator but one reflected in many forms as life in all animals,plants and humans .the one whose spirit flows through all things granting the blessing of life. Death is when God leaves, and the body fails. South Africans do not understand the dispossession of natives how the wealth(land) was taken away systematically as leaders have been locked away during their lives, killed or simply memories to their loved ones, their stories never told rather concealed from the people. We do not fully understand the effects of this system as the caring heart of a black does not see the exploitation of the soul and continues to bare the weight of the world. Every day the black men fully commits to a white supremacy system that continues to kill the mother and sister while the black men lose genetic riches. The system is gradually eliminating high potential individuals through suicides, substance abuse, self-hate and materialism so we fail to help others as there’s a need to ‘get out’ the places we call home. Black history is simply disregarded, and we are taught of a white way of life and our methods are labelled outdated or irreverent while our old methods proving to still be effective to date. Harmony and peace are two things we possess naturally as Africans. If only we practice this as we should and understand where we are coming from as to see why things are as they are. We need to understand that the rights that are being offered are in alignment to an oppressive system that derives black people of their full potential and continually continues to oppress the black folk bringing about certain limitations in society.
+As ‘mutsonga’ I believe I’m part of one of the tribes that has it hard in terms of tribalism that is doing more harm than racism because it is ongoing and further separates the black folk . The collectiveness of the Azanian has been forgotten and all our wealth has been forfeited in fear. There’s submission to oppressive institutions and policies. Homelessness and conflict have come about into our families because of the system which seeks a valid proof of progression in terms of ability to acquire material. A system that has taught us to fear ourselves, hate, disrespect, feel better than our own brothers and sister who fled their own countries seeking better than what lies there. Drug dealing is self-hate.  Gossip is self-hate. Cursing others is self-hate. Tribalism was man made in south Africa during the homelands act, today I ‘shagaan’ am misunderstand and thrown aside because people have only seen the pain displayed and the reasons are simply discarded. The excellence and resilience that was displayed by all tribes of southern Africa before the introduction of governments on our continent is hard to come by these days. divisions have successfully been made amongst the people who although can relate to one another choose to misunderstand and seek to compete against each other. if we are not given the opportunity to live up to our passions or potential in a way that benefits society progress will continue to be stagnant mostly in rural areas and townships while cities grow bigger. we need to understand that the reason why certain tribes feel their bigger or better than the next, why is it you already have an image of savagery and criminality when you see and hear anyone that has an African accent and dark skin. They taught us that we are dumb so we became just that. But we all just brothers and sisters. Racial and cultural ideologies aside.
+We forget we are our all one, the spirit of ubuntu is dying as black people are taught to be unique and very few are willing to be at the front of the change they want to see. Aren’t we all the same, if we are all hurting?  We see each other as being different rather than seeing that all black people are in the same struggle. The successful ones are slowing raising westernised children [coconuts] who will not know their roots seeing a further collapse in African history and future generations falling in line with the system if not defended by it. The poor ones are slowing wasting away in the townships and left only to consume what they are given. Mr H Ntsawisi believed that cooperation with other tribes would better collective black lives. Biko said that problem is not a racially divided south Africa, the problem would be learning how to live together peaceful. Tensions are still felt to this day, division brought up by a system that supported separate development. The white population has developed themselves through crime against our people. 
+The exploitation still goes on today, as white employers prefer foreign workers over its citizen to keep bigger share of the labour spoils. Workers who then defraud the companies taking wealth out of our country. Jobs are scarce and one may wonder why I’m even at university. No choice really if you are poor and black. The idea of becoming skilled labour was sold to us when democracy was passed. Today there are still some people who have keys, but the door just won’t open. Not only are we laboured but we are the biggest consumer.” Blacks are economic slaves”. We are simply putting our money where we have no control. Black people consume the most alcohol, but I’ve never heard of a productive event that was endorsed by these big companies. It must be our own people that want to help, no one is coming to us. Why would they forfeit their control over us? The choice is ours enjoy the exploitation for substance or find a way around this problem. 
+Substance abuse is not natural, it is not normal to see a ‘nyaopes’ ,it not normal for a father to always be drunk. Trends are evident in Ghettos and Rural areas. The circumstances in which we find ourselves makes it hard to stay sober. Our trauma bodies are roaming the streets, we say we are okay, but we are not. Trauma has been passed down from generation to generation, simply living with us all days our lives. Being in pain is norm in our communities. Let us learn to heal the pain inside before having kids for we shall expose them to situations they are not ready for. Whatever hurt you feel. Black person turns to substance to maintain a happy mood. When life gets hard, we drink, when life looks promising, we drink. We don’t know any other way. Men are worse in terms of substance abuse.
+Kids raised by single mothers, who then teach them to hate the black men, and feminine qualities are installed in them. The man who pushed himself to his limits says that children raised by single mothers are not valued. This will make men softer if not consider their sexuality. These days the lost and confused can completely convert. Men leaving children is a big problem in that introduces problems for example kids who cannot function properly because the absence of a family structure, being raised wrong having to endure abuse if they are not subject to negligence and homosexuality. Some women don’t allow fathers to raise their children, often because raising a child is confused with maintaining one. The societies in which all this occurs are toxic and often residential spaces for our people. Family conflicts arising from pressures that were set up systematically. Crime and violence continue to rise. A new threat for our sisters GBV. Safety in society is not felt, the people are always feeling uneasy, and fearful to act. Building something new in the black community is often met with criticism if not black magic. Enemies to our own progress and happy to serve and maintain the hold our oppressors have on us. For people divided and traumatised, we MUST get together, not stand us individuals. 
+The conditions are not ideal or easy, but we must make a path for our economic future. One where we have self-sustaining societies within our nation. The world has become unforgiving and unity amongst all people is not practiced. Let us seek truth, change the scores and play the game on our own terms not those predetermined by someone else. We must act and contribute to the development of black people in all spheres of society. Each effort counts, so how will you make your contribution?
+
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 8 */
+
+    {
+        title: "LOST BATTLES, LOST MINDS",
+        content: `
+
+            <h2>LOST BATTLES, LOST MINDS</h2>
+
+            <p>
+             Fear of the black men, what we can achieve united, when pride is shown, and love is ultimately given without motive. the Sobukwe Clause which was especially written into the Suppression of Communism Act of 1950 as amended by the General Law Amendment Act of 1963 is an example of what threat African unity poses to an oppressive system. When we choose to not let restrictive laws oppress us and stand for an ideology so strong it threatens those in power for, they feared what we would achieve united. Who will the people look up to when the free thinkers are sent to prison for fighting for their own people? when government has the power to influence laws at their own well out of fear and influence from abroad. Fear of Africanism and what a united black folk can achieve when they are driven by the same purpose, goal and wish what it would mean for the capitalist system. It was this ideology that got Biko killed and Sobukwe removed from society. But do you believe in reincarnation?
+As part of its repressive strategy, the apartheid state was quick to use the death penalty against its political opponents successful removing free thinkers from societies, so the people ignored what was truly going on.  Prisoners sentenced to hang were sent to Death Row in Pretoria Central Prison to await execution. From the 1960s to the 1980s, the apartheid government executed about 134 political prisoners. How these names have been removed from history and their contribution often misunderstood or unknown to their own people. 
+There has always been fear of a united people, what they can do when they start moving as one.  The police force asked for military support when the EFF initiated a national shutdown in 2023.  We were shot at even though we were unarmed at student protests and media lied labelling us rebels and students arrested for what was rightfully theirs but looted by politicians,  the ANC hates seeing it’s reflection. They feared for potential vandalism and looting-they protected the mechanisms of capitalism that remain in what used to be the capital of apartheid, Pretoria. As if people are unable to be peaceful, they had to be kept on leashes, fear that they might lose what their system has to offer material. Systems have always been meant to separate people embedding the idea of separation in our minds giving birth to tribalism which is affecting most communities far worse than racism because interracial interactions have been limited. It was the homeland law by the Bantu department that sort of developed the sense of uniqueness and separation from our own fellow south Africans so the darker you are the more you are despised. 
+People who had now come to settle here now setting laws that were determining where people would live who get which part of the country and the reason why, we not advancing fast enough. I believe allowing the passing of the laws was what led to this disastrous governing in many states of Africa. Fear of a united people so they introduced tribalism. A way we could compete amongst ourselves to develop someone who was not interested in developing us and use of our own brothers and in sisters in has come to know as africapitalism. The people were left in large numbers in the ghettos.  Townships within the apartheid geographic landscape and the physical and social legacies. The townships as a unique and permanent part of South Africa’s urban landscape. The exclusion by design consequences. The scale issues – how many residents, value of physical assets, % of national housing stock. What are the physical challenges posed by the l The same people who spend their hard-earned money on domestic markets fuelling the economy, but this rarely shows as people continue to struggle in the rural and township areas. With an education system meant for our indoctrination and predetermined possible outcome. if flaws in the social sciences were taught to us and how they play a role in early child development determining how we eventually function in the system, maybe we would escape. Those that do make it out rarely come back to help. They leave behind the noise and bloodshed of the streets. Environments that have us satisfied with less because the circumstance could be worse. The blame cannot be only governance but the sheep behaviour of those who simply watch their homes burn with no intention of extinguishing those dream engulfing flames fuelled by our own ignorance. One thing about informal settlements it takes a community to put out the fire. For people with numbers, we are dependent on everyone else, unable to sustain ourselves. 
+In south Africa we are rarely fed by the system  And poorer households are disproportionately affected. Living in a food insecure household may be forcing poor South Africans to use a variety of coping strategies that ultimately lead to anxiety and depression. it is our labour and sweat that keeps the economy competing on a global stage. There always must be a boss with a completely different shade of skin. The laziness we have for establishing business has seen us lose ‘spaza’ business to other people where they continue to evade tax and disallow credit to struggling societies even though they are trading illicit goods to citizens when they themselves don’t consume the products, how the strategies that South African households commonly use to cope with food insecurity are associated in with anxiety and depression highlighting the need for an intervention on the mental health especially for black men. It is as if dependence was built in us as displayed everyday by our actions of waiting for others to help us instead of coming to own aid 20% (1 in 5) of the South African households were food insecure. If only we could convert our buying power to investing. Land remains another factor that hinders the progress of our people. With little or no farming land or knowledge. Risk is always put second unless it for something attached to faith or gambling. People believing in ‘christ’ than themselves. Detached from their essence. APE born frees. People having more faith in gambling than starting something new together where the business ideas are pitched in beer halls then any possibility of their existence poured down throats. Not that there’s nothing happening but just not fast enough there’s some areas where government isn’t failing completely. If only we capitalized on the numbers and the skills that come naturally to us, we would quickly advance our people. The connection that we derive from the bloodshed land means we have a geographic advantage on everything. The domestic market can improve drastically with we redefined the term black market as to make the term seem less degrading. Black won’t be associated with bad.
+Suppression has always taken violent approach as the natives were displaced, dispossessed and dehumanized. Although this system was implemented in accordance with the law, it makes sure you feel its pressures physically and mentally it is straining, and a social hierarchy based on the foundations of apartheid remains intact in our society. Physically felt either through disease or violence that’s rampant in our societies. The emotional part comes play to as the environment wires cycles into our minds thus resulting in a repeated pattern of the same kinds of people if not worse, all repeating the same prolonged suicidal behaviour in what is becoming a norm. Unmoved by the actions of individuals who are experiencing a lot mentally simply watching our people die little attempt to help as the system breakdown and disadvantages a lot of black people. We may think this is beyond us but have we tried to intervene. The people have come to hate themselves trying to change themselves rather than see the beauty and attempt to learn their history. Black history is important so they know who they are and what are their strengths are. The system completely neutralised the masses by using a low passing rate and miseducate most through an nonessential school system.  The department said in 2022 that it is aware of arguments that raising this threshold to 50% would improve the education system; however, it said that this change would not be made as the system aims to encourage ‘different levels of achievement’. Achievements which are to supply a labour force for the continued expansion of the economy to pay back funds borrowed from ‘the world’. The truth seems exaggerated because most people have forgotten where they come from and instead of going back to understand, they adapt foreign ways of living, becoming visitors in their own countries rarely able to explore its beauty. As we witness black culture die out. Natives rejected on their own land. The system is well set up that no individual can change, it requires a united front. No influence from people that don’t know what we go through daily. How we are obliged to swim through the waves of inequality hoping to overcome although the waters keep pulling us down. Opportunity seemingly so far from reach for most. Africapitalism should be the first step in taking back the true freedom of our people better to fight a demon we know then let them possess all spheres of our being. Increasing the supply means bringing up the prices So, the cost of living only going to increase because one thing we are good at is making babies.
+Africa has a lot of great leaders erased from history. Leaders that stood for the people, not those who attempt to only progress themselves and neglect the people’s needs. Freedom Fighters that gave their lives to see that those restrictions were removed so the people would be liberated. Things are only worsening as we witness the birth of a new set of ‘coconuts’, capitalists with bigger interests than the welfare and well-being of the citizens. the wealth of Africans was attained by their own hands not by theft or exploitation. we just need to leave the capitalist mindset and remember what love is, connect to our ancestors understand what they were made to be. understand what we have come to be. A lost folk, oppressed, limited, desensitized and dehumanized.
+Loving our own neighbour has become so difficult we gossip about them and even insult them. Black excellence displeases black people more than white people. The system has certain individuals that it needs to fall in line with it. Individuals that are needed for the advancement of the other, puppets in this system. These individuals are envied and sometimes despised for their efforts these are black Capitalists. the power lies with the black masses I wish we would capture our own local markets in the townships thereby placing more people in line to encounter the notes as money rotates faster in the townships.  The economic incarceration in the townships is a new struggle that needs nothing less than the unity of this generation to wage a war against economic emancipation without any assistance from the government. One thing I honestly believe is that we don’t choose what to become but circumstances and where we have been placed virtually determines how we live out lives and ultimately characters in a system that we are indebted to, maybe even to the life force perhaps for not utilising our strength and fulfilling our purposes. It will take about 4 years even if we gave up our healthcare, security and government paid securities but continued working for no pay to pay back the aid we took. sad part is sometimes we are given roles that continue to burden our spirits always as if enclosed in loop of suffering, aluta continua. The world beyond our imagination awaits us like it did in the past when our ancestors enjoyed the benefits of their land. But all that remains is fear as if programmed into our minds.
+We are all linked, its one love. Not that people are addicts, unable to work or as they put it ‘stupid’. Its brainwashing that has taught us that we must live as the white man that is if we want to survive but if only we could only see truth maybe we would unite and just simply stop playing roles and start living and acquire wealth within our communities. These institutions are not for our benefit never have been, simply to serve the needs of the system. The system has successfully changed scholars to digital content providers, taken love out of our communities. The list is long, but the solution is simply. WE NEED TO ESTABLISH OWN MARKETS AND SYSTEMS AS ONE PEOPLE, AFRICANS.
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 9 */
+
+    {
+        title: "OUTSIDE THE BOX",
+        content: `
+
+            <h2>OUTSIDE THE BOX</h2>
+
+            <p>
+               How do I move according to my own well? With a system intended to keep me addicted to substance, screens and unable to think for myself. Kept waiting for a better tomorrow and embrace the uncertainty that comes with the process. Everywhere you look, everyone tells you how to behave while they themselves are projecting elements of their trauma bodies and are failing to progress themselves. All ways you research to cope point to toxic habits especially if you from the townships where drugs are readily available to customers that have the money for it. How do we ignore the advertisements that are thrown on our screens when we try to play music for relaxing, but throats dry as soon as we see those ads linking music to liquor?
+Understanding that everything was set to be as it is. a sequence benefiting one side while killing the other and it is as if white genocide remains the fear of the system as racial barriers remain our society with white people still separating themselves geographically seeking no association with black people. Subliminal messages of self-destruction, stagnation and crime being imposed into the minds of the people all in the love of entertainment. Constant abuse of the spirit and bodies, once you get comfortable it is stripped away by worries of the burdens this system , heavy bills to pay. 
+It is important that we get to know ourselves totally, every aspect especially our history and how things have come to be.  Deconstruction is the necessary first step towards the education of African people who have already been miseducated by a European -American education system that has come through European systems, we must carefully scrutinize the information we are using. Ignorance amongst people of colour is raising at an alarming rate, people couldn’t care less about their heritage. Too caught up on screens to ever truly listen to themselves. As they constantly follow trends and are uniform in terms of thought because of information consumed and how this information is distributed. All grown but don’t know where their roots sprout from. We know little or nothing about ourselves and are now chasing a materialistic lifestyle [inherited capitalism] forgetting the value of all people, our own value and capabilities. The contribution we could all have in this new self-sustaining environment where our people aren’t at competition but simply living in a healthy routine and providing for themselves. Building wealth not for families but for other generations to come. We shouldn’t be selling out our souls all we have to say is ‘ngigrand’ I don’t want to be a participant; I want to build and change this situation in which I find myself. Years of poverty and very few or none willing to offer help. Is help offered besides when it is for their benefit? When there’s something they can get from it.
+I tried to play music online the other day only to find messages telling me that I’m missing alcohol in the equation. how the entertainment industry is always influencing the substance and why the specific industry was chosen is continually being endorsed. It is this big companies funding big artist rather than doing good in communities that consume their products. The youth find itself working to ‘’ thank the body” whilst spending almost half their salaries on food, as if it is what we were put here to do, as if it is what our freedom fighters wanted for us. The environment in which majority grew up in and continue to live in has put us in cycle of reoccurring trauma.
+The trauma we embody is not ours but that passed on, generations of hurt or either by abuse or negligence. We forget our history and convince ourselves that we are mentally sane, come to the hood and you will see that nothing is normal. We are facing pain every day in our being-at home, in our minds and sometimes at the hands of the people that are meant to love and build us, from bosses that make sure to remind you working your way up-that the system considers you as nothing but a statistic. There’s no one we can confidently talk to in fear of being misunderstood because these issues are taken lightly in our societies and there’s little to no intervention to rehabilitate the adults who expose the children to crazy ways of living which then become norms. We are not taught enough about the mind and how it can keep us in place unless we choose to act and accept the circumstance our people find themselves in. In constant fear of their counterparts because of the belief of a superior and inferior people. See past the illusion of being in control of our own futures because the system has already selected traits it needs to thrive and destroys anyone who doesn’t possess these. I know hard working people still struggling and becoming depressed only to be slave to substance or screen. Kindly advancing the minority while more and more people deteriorate and communities remain underdeveloped.
+one thing about screens they are there for comfort, also keep you ignorant, wasting most of one’s time with many wasting hours of productivity by watching videos online. Short clips with little or no knowledge to pass on just giggles and laughter. is watching that white only casted movie better or scrolling mindlessly on social media for hours, more enjoyable than picking up a book and learning about yourself? How we suppose to live when everything we do is considered dumb or just entertaining rather than enlightening but the reality is that black folk have lost the need to learn and acquire skills whether formally or informally, all we want is a paying job rather than being our own bosses or directors. The future is not a mistake. Years of worshipping the white men starts with them being portrayed as ‘starring’, our brothers as criminals and our sisters not being loyal or valued for their bodies. We need to understand that these images are buried in our subconscious and will ultimately become how see ourselves and live, eventually the words that we will speak. All these movies and shows send messages to our minds.
+Messages of self-hate and self-destruction displayed before our eyes. Pictures of gangsters before our eyes so we are convinced crime is one of the many ways we can make serious money. CAPITALISM has created envy and thus a more competitive environment. Everyone envies the star role but forgets that it’s the group effort that builds a more progressive plan for our societies. A lot can be achieved when we work together rather than these solo efforts. Self-hate started with introduction of laws, which have since been able to restrict us within ghettos and rural areas. Laws that were inherited and considered constitutional by the oppressors. the need for independence has grown not only because of selfishness of those who make it but desire to change circumstances for the people, how much longer must our people suffer. Most with nothing to sell but their precious time at the end their lives with rarely something to show for those sacrifices. It is crazy how there is nothing we wouldn’t do for the white men but throw judgements and insults at our own people once they suggest a way forward or a way to reconstruct the system. Lifestyles that have led us down destructive paths engaging in toxic habits to feel something, anything. 
+We are constantly being exposed to abuse in all forms, a new form of abuse in the form of financial abuse from our sisters who close to go stability with successful old man because of luxury that comes with it. Our women buttered down by mentally tired men who have been taught to believe that when we feel overwhelmed it is okay to neglect the cause but rather focus on episodes of drowning our sorrows in substances. Nothing but substance is there for us to seek comfort. I would say church, but it was what taught our ancestors dependency and not knowing where the world is heading gave into a belief that we have riches that lay in heaven nothing we do on earth seems to give us the wealth we dream of. This current world is not designed for the black man and has been portrayed to belong to him or at least designed to make feel he belongs in this white men’s world that has been set up. The people are sheep being led off a cliff and taught to fear and give respect to the white men but show little or no love for their own. KNOW YOUR WORTH LISTEN TO YOUR SPIRITUAL GUIDES DON’T LOOK OUTSIDE FOR FULFILLMENT BUT INSIDE. HELP YOURSELF. SEE THE MESSAGES AND HOW THEY ARE MEANT TO LIMIT, DISTRUCT, SHAPE AND INFLUENCE YOU, IS IT FOR YOUR BENEFIT? LOVE YOURSELF BLACK CHILD, LIMIT SCREEN TIME AND LEARN MORE ABOUT YOURSELF.
+
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 10 */
+
+    {
+        title: "MATERIAL BECOMES THE DEFINATION",
+        content: `
+
+            <h2>MATERIAL BECOMES THE DEFINATION</h2>
+
+            <p>
+                Time flies by and we see new trends, ways of life, pop up new means of production declaring our people useless, uneducated and incompetent. Which of these innovations are for sufficiency, do these innovations positively influence the progress the people and which are meant to keep us as black people back? AI is taking over in most industries calling for higher literacy levels, the value of the black child depends on this for without education we are nothing. Mandela declared it the only means to success for a black child. The entertainment industry is playing with the minds of our youth. Screens and arts are running the trends amongst the young with most adopting foreign ideologies and ways of life. Our own African culture is taken for granted if not neglected.  Ratele highlights this in his book what it looks like from here as he attempts to contribute to a sense of psychological liberation that allows students of the African mind the freedom to explore the world from their own cultural centre. This not only apply to psychology but across most if not all schools of thought.
+A lot of the people’s time is lost or forfeited chasing leisure and comfort rather than taking it upon themselves to speak about and address the social ills that continue to make the lives of the masses unappealing and stagnant so we can rapidly work towards building wealth and safer communities, more prosperous societies so we are no longer associated with only the bad thus being labelled uncivilized. We can’t understand why the environment is as it is today because we were not taught and refuse to do our own research. We are forgetting our essence and live a completely different live we are heading somewhere but is it the right way? ignoring all the effects of the system and how it is exploiting the labour of the people and killing imaginations as a need to survive dominates.
+ I would admire seeing more black people taking it put on themselves to make these communities, that make their spirits feel low, places that are home to us yet cause us to feel tortured, better and more equal. We the people drive the demand and supply but remain as households not producing nothing for ourselves, consumers. When money is needed, as hard as it is to keep some for yourself thus you will continuously have to earn some more to maintain a lifestyle that violates your human rights. A government that uses a system that was introduced to keep the people in line with the scales of power being balanced by their sweats. How consumer rights were labelled freedom. No savings to capitalise and so we remain dependent on the system to offer initiatives, not yet uhuru. Nyerere highlighted that democracy should not make an individual within society still long to be free.
+Technology is advancing and it has taken some people out the employment cycle. The results indicate that, as youth graduate unemployment increases in South Africa, graduates become hopeless in terms of securing employment. This due to multidimensional factors that include limited demand in the labour market, skills mismatch and lack of work experience. The division of labour was set to make production faster and more goods made available for the public. A single firm producing most of the food and a few others in charge of the other essentials all foreign owned but little welfare development for the people rather for the growth of the business. Pandemics have shown us how ‘unskilled’ black people are constantly at the bottom of the well and how easily we can be replaced if we don’t stick to company ‘laws’ and how we don’t ‘know’ enough. left fighting for the cause of the other or forced by a system, that restricts their skills development. An academic trap set up to keep the masses misinformed and stuck to trends on screens. Tested on things that wouldn’t help in life simply to test our memory.
+The clothes, food, material, services and financing of the people is not owned by themselves-Part of South Africa’s economic recovery lies in creating meaningful job opportunities – a process which begins with citizens supporting locally made and manufactured goods. The people are consumers of all that is produced by themselves while they are employed by someone else. Instead of having a surplus to sustain the people and having specialised goods sent out already worked on and ready for sale rather than removing raw materials to be exported back into our country to build more wealth for other countries buying our own products back. The fact that we as an entire race are satisfied with consuming instead of making. The youth more trapped by this system most happy to sell their time rather than do something to build their communities. 
+Advertisements are everywhere, screens, roads, cars even walls. we are taught to consume, and monetary information and knowledge is not being effectively given. Everything is accessible on the internet and there are just too many misinformed individuals in our societies and leaders are taking the peoples suffering for granted while they focus on acquiring more wealth for themselves. Societies in distressed and individuals seek relief. Now what we call ‘groove’ is ruining futures. Undercover skims by those in power to make the folk submit. Power is what we all want, rather than respect and love ourselves as a community so there is less violence on our streets. Spend time with people rather than watch screens although they offer convenience when it comes to communication, they are the greatest destruction of mental health and a major time waster. They set unrealistic standards and become the biggest source of misinformation.
+A distraction is what screens are. They can make you relax and forget what must be done then suddenly time is gone. The world has left us behind and it’s too late to learn. The wealthy are only getting wealthier, and inequality is still high. the access to necessities should be part of service delivery. work strikes often get the cooperation’s to listen because no matter what happens someone must work to deliver a good, the demands of unions are rarely unrealistic in the eyes of people profit hungry individuals who have little to no care for the surrounding communities are the problem. The people are the hard workers pushing, trying to get a living. The need for money is what gets them up in the morning what allows them to endure whatever exploitation they are exposed to at work. The unemployed depressed with little to no hope.
+A system cannot operate on one principle although many terms have introduced to govern out bodies and states functioning separately will continue to fail and the people are going to feel the effects of a system-unemployment, poverty, mental illness, substance abuse, crime, disease and a new threat in teenage pregnancy. There are many ways of living that are completely foreign to the way of life in Africa, long time before dispossession and murder of the natives. Exploitation of the south African is not only done wrong by the system but by the others. Constantly seeking employment and a way to better life some even resort to night life and harm others because those are the only options to get money and so they gamble with the only thing, they have their lives. 
+When there is an increase in supply the income curve doesn’t shift for the workers as much simply put, the ‘development’ that is taking place doesn’t consider the welfare of the people. Nor the places they travel from. Production in our communities will mean development in infrastructure and improved social conditions. This might also help mend broken families by reducing suffering while also allowing families to spend more time together. This won’t happen anytime soon because we keep supporting foreign businesses and prefer moving to the cities to seek opportunity when we should be establishing our own markets and provide services along with literacy progams. Financial education above all because we the people haven’t accepted the need sacrifice and keep money for a later date, we exhaust every resource we are given.
+If we can’t safe ourselves, how are we supposed to manage a portion allocated by policy to make sure we remain disadvantaged. Most of the money is spent on goods that are owned by firms with an only primarily functioning to make a profit. All other cost is removed including that of life by alcohol and tobacco focused firms. Health consents are the buyer’s responsibility to know, information that is sweet coated or simple ignorance because of how straining this life is so we are just happy wasting it all away even with our purposes not lived . the death of the men is not a mistake man are exposed to toxic ways of living that they don’t mind disrespecting themselves or their counterparts without any respect or remorse after the act whatsoever. One trend noticed is how most addicts are men and how many have faced a premature death from ill health or the hands of a brother. One method that was successful implemented for the benefit one and the destruction of the people so they cannot live beyond a certain geo-economics’ boundary, substance abuse. The catalyst to the degeneration of the black male. 
+The people confined in these small spaces for some literally borders that they never get to leave they are born and die in rural areas or townships never getting to explore this vest world because they lack the means to make it happen. Expect to go BUY, something somewhere else to try and make the most out of this material. Material now literally defines our routine. How we even think, talk, behave, die then how we are buried. Competition is what is killing the spirits of the people. This need to advance and have something material to show for it, a capitalist system trap that was set up, wanting to say I beat the system blind to fact that no individual effort is enough. The need to be equal to ‘umlungu’ and unfortunately for most black entrepreneurs in our ‘class’, there’s always need for aid. It’s hard for the people to show their smarts and be productive, the strength and favour of the land and climate. worse with failing governments. Leaders doing little to change the way of life of the people. The current leaders are not equipped to think beyond the current financial calendar for them it’s keeping power rather than doing good by the people. Most are capitalists into politics to get in on the share of the big monies that pass through our country. This then makes the people envy and material becomes the definition.  
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 11 */
+
+    {
+        title: "MY VALUE",
+        content: `
+
+            <h2>MY VALUE</h2>
+
+            <p>
+              There’s a cry in depths of Africa for something believed to be freedom, the people seek liberation from commercial and mental slavery disguised as democracy and living has become a struggle for most Africans. The access to opportunity is limited and the illiterate seem to be left out of all considerations for development there seems to be no place for them here except a wage making another white man even wealthier than they should be while poverty rages in black homes. The development of Africa has become attached to economic gain of cooperation’s rather than fixing the damages that have come about in our societies because of our history, abuse and exploitation. unattended matters continue to make life in townships and rural areas especially difficult. Do we even have the same definition of what we consider to be difficulties and struggle? Do we see that a certain type of people is suffering more, and it doesn’t seem like things will improve as the situations worsen every day. Why do we allow these cruelties to occur in our societies? Lack of knowledge about self is causing continued tribalism in societies as we fail to unite and have no problem destroying or even killing our own people.
+The people even long after gaining their independence fail to change the lives of majority of the people with some still longing to be free. Over thirty years, the ANC has struggled to deliver on this agenda in a profoundly unequal society with infrastructure and institutions that have weakened particularly over the past fifteen years.  From the mechanisms of a system designed to keep the people under the pressure of other powers rather than dictate their own laws. We remain at the mercy of policies and rarely get to say what we want without having to display violence. Too many grievances in households which cause tensions in the home and therefore separations occur which in turn affect the children. family support just isn’t provided enough or seemingly not material as many continue to struggle to make their dreams a reality. It is up to individuals in our communities to innovate and solve problems of the local people as those outside seem to be concerned about their own grievances (outside being suburbs and city areas). Believe in an idea of so much you live and grow yourself with it. Help and support one another for there’s nothing to lose. A perspective the bible doesn’t give. Institutions of the people were dismantled, and a new way of life imposed. No amount of material will ever satisfy those in power because of the continued support we black people grant to those who offer goods. Thereby we forfeit an opportunity at acquiring wealth and ever being our own producers. Not enough black companies to compete against these companies in our communities spearheading the initiative of development in our country. Rupert’s remark that “I can’t be Father Christmas for the whole of South Africa” shows that he is in this for his pocket or simply cannot employ everyone so there’s a need for establishing brands to compete or collaborate with the man. costumer behaviour sees our people sometimes even living beyond our means failing to acquire assets for a lifetime as they fall deeper in credit. Freedom should intel free will of the people and all things should be easily attained and assessed by the people. But this is not the case, are we really born free? 
+the flames of opportunities granted to people are often extinguished by the need for money to make them a reality or lack of ‘connection’ which is what opens doors these days. Most households surviving barely making enough to save for other things they desire. Rural poverty a reality and separate development failing amongst black people as tribalism hinders collaboration. We seem to be competing to see who staving less meanwhile we all remain starving and at the mercy of industrialization and all other mechanisms and institutions governing the institutions governing the system.
+Sunsets and we go to sleep surely, we have dreams something we aspire to be. No dreams actualized just bodies of matter breathing through space, thankful for another day to try again, but seems our efforts keep failing as we race in this acquisition of wealth. Even with the talents and skills we possess it is easy for our dreams as black children to be dismissed simply because of the reality of the situation we find ourselves which often denies us what we truly want so to become emotionless because we had to settle. Discouraged people thankful for those who hustle and still try to ends meet without aid, just on journey to make sure their dreams come to pass like prophecies. those brave enough to stand against criticism from their own people. Those who are deaf to opinions because they understand they are on their OWN and that it’s their responsibility to change their situation. 
+The war on drugs wasn’t enforced and substance abuse remains a problem in our environments. Drugs have become one the major issues that society is facing and this issue had also become the driver of loss of and hope for the youth in townships and rural areas. The destruction of the black man to lower his genetic richness. The welfare of the people is discarded if there’s money involved, those in power only want to hold power so they can keep enjoying the benefits that comes with these leadership positions. One of the biggest solutions in the fight against drugs in townships is for communities to unite and support those who are seeking help and reduce the name calling. Elimination of the drug market within communities because honestly drug use has no benefit it only further burdens the drug user’s responsibility in ensuring their survival in these unforgiving societies.
+The way privileged people see the world, how everything has always been within reach, makes us the disadvantaged seem like we complain about everything but we simply calling for a change, a chance to live a little. Apartheid’s legacy is still largely evident today with many townships characterised by low levels of innovative investment, high unemployment, low household incomes and poverty.  The story is different for other when in the slums we have nothing. All you know is to see life through given circumstance and the lucky ones get to leave rarely coming backing seeking better pastures. in these isolated places where progress isn’t reaching us fast enough and people never really get all the help, they need in spheres of their being, their faith weaken, emotions array and their bodies destroyed. But at the end of the day efforts you put in are bound to show just don’t take suffering lying down Especially in the townships where conditions are overwhelming it is our duty to change our environments. We all believe we are made for something great but we wait for someone else to get us there instead of tapping back in our collective consciousness. You don’t have to be a boss but don’t be a sheep either-all roads lead to the slaughterhouse, collaborate and most importantly believe in self as well as those trying to take the names of townships to the world. We shouldn’t feel threatened by black innovators but rather we should support them in all ways possible. Just maybe if we loved more. the inferiority complex evident in our streets would disappear. Most of us have to an internalised white supremacist thinking, which means, by implication, we have bought into black inferiority.  Painfully, because of the latest negative developments, I am persuaded to conclude that some black South Africans are still caught up in the web of a psychological superiority/inferiority complex. They believe, consciously and subconsciously, in the notion that they are superior to African human beings and inferior to Caucasians. This superiority/inferiority conundrum expresses itself in the differential way through which they view and treat people of African and European origins.(Benzi ka-Soko)
+Expense is rising while the people are barely able to afford their daily necessities. Days on end with no source of income. imagine trying to live the life of your dreams, if your black and don’t have help, living the dream seems possible but there’s people that have grown out the dirt to reap tons of wealth. Rather not impossible but extremely straining on one’s soul. It requires people not to be pretentious but to do something wholeheartedly especially if it will introduce a different hood mentality improving their social status and develop their respective communities. The people seem to be selling every aspect of their being and health comes secondary to earning money. Anything for the Rands.  Humane and inhumane. Maybe we should embrace the duality? But not settle to be suffering all the time. Why do we wear our trauma everywhere we go. Settling for anything no matter the health complications that come with it.
+Interracial relationships rarely form between racial and ethnic groups alike as a result of the difference in wealth and the history of the country. The continent’s most industrialised economy still has “one of the highest and most persistent inequality rates in the world” which is “perpetuated by a legacy of exclusion”. It is as if there’s nothing for white people in townships as they rarely even try engaging with people staying true to separate development sourcing out only employees and customers from the townships.  The history of our countries and families should be understood as to prevent any sort of indoctrination because it shows how the people came to be so isolated and bare a bitter hatred for our own neighbours and ourselves then go on to idolise people we have never met. discarding the efforts of those around us really making a real change and efforts of struggle heroes whose names have buried through campaigns of miseducation. Tribalism is still a bitter reality in south Africa. The blacker you are the more hate you are going to receive in south Africa. Xenophobia the worse form of tribalism in south Africa. Africa's people are constructing their nations on their own indigenous values, institutions, and heritage. The contemporary African state was created by Europe, not Africa. 
+People that make the community a bit nicer to live in have a giving spirit. People do work hard, and their efforts show but the earnings are rarely used to pay for some the social needs in community. No one to help through hot summers and cold winters. Wealthy black people continue to leave townships to suburbs with the wealthiest leaving the country entirely. All they are asking for is peace not selfish at all but just fade up with the environment and the little improvement it shows. Failing to deal with problems that have been there for a long time. The people cannot even see the good in themselves constantly criticising and material possession still ranks the people. ‘grootmans’ instilling a mind-set that stands for respect and appreciating self a good example for the youth in the ghettos, but their ways are not proper.
+Sadly those that do learn the necessary skills to advance in this system never effectively pass on these skills set, the oral tradition in African spirituality has been slowly replaced by posts on social media which continue to make people envy therefore advocating for a capitalist based market system. Our means of trade are only restricted to money in other words there’s no way a community can make a project work for their own personal gain as very few have the financial strength to save as most of their money is either used to pay debt or just survival. We continue to buy land we could have obtained legally if we showed how we plan to use the land and how it would benefit society rather than landowners. Landowners most time descendants of settlers and the law still doesn’t favour black people with women having it hardest. The issue of land is a sensitive one in our country and many still fail to acquire land especially women. 
+if the discrimination against blacks is supported by a system that has made an interiority complex to develop within most black people,  Nelson Mandela intended for the Constitution to liberate us, not consign us to further dispossession. Limiting them to what they can and cannot do. The system is guided by the constitution and many laws in the constitution ultimately defend the oppressors and are mechanisms of oppression which were inherited and reflect a white way to life declaring our African ways absolute. One law that remains as the worst discriminatory was that against Robert Sobukwe a forgotten hero amongst the youth today. The sacrifices he made today enable us to move freely to any part of the country that we wish, and his African spirit continues to protect against other beliefs either than Africanism and the illusion of freedom fades as those who understand see that the system can be manipulated any how to serve the progress of white people while oppressing those who attempt to free others. Our history was written by someone else as we have even seen oral education die in most of our communities, so the real knowledge simply dies with those who possess it. We have forfeited our spirits to endure this torturous system of rule passed off as legal. Our dying and suffering legal. The worst is the hate of self. Evident in south Africa as tribalism and xenophobia. The fact that these words don’t have any African origins-shows that they were enforced onto to the people, an idea we were made to believe is true like that of democracy.
+Black is beautiful and it’s saddening how we are the first to criticise our own people therefore making it harder for a lot of people to succeed because we keep pulling them down and we rarely collaborate to venture into new businesses that might help grow us. The hate we have for ourselves is surprising and what used to be done to us as torture in the past has become a lifestyle today and it’s self-inflicted. South African women endure mistreatment with South Africa ranking first in terms of GBV. I believe this hurt traces back to the slavery. In 1814 Baartman was sold to S. Réaux, an exhibitor in Paris, France, where the public showings continued. Réaux allowed patrons to sexually abuse Baartman, making a significant profit off her mistreatment. She also was examined by scientists. Baartman died in Paris in 1815 at about the age of 26. After Baartman’s death, scientists preserved parts of her body. For many years, her remains were displayed in a museum in Paris to support racist theories surrounding those of African ancestry. In 1994 Nelson Mandela, the new president of South Africa, asked France to return Baartman’s remains to South Africa. In 2002 France agreed, and Baartman’s remains were buried near her birthplace in Eastern Cape province. Today south African women have no respect for themselves. Selling their bodies all because of trauma and circumstances, the need to provide or simply live out a ‘soft life’. Women simply reduced to beauty as the worldview made them such. Money is even buying love today. It’s not even debatable black people are the poorest. Why is it that we have no interest in finding out why things are as they are?
+We are failing to unify trying to advance as individuals than as a collective because we don’t see how were ALL put in this state of struggle. You cannot really get comfortable as a black man that will result in suffering. The people are capable of extraordinary development unified that’s probably why other people have always come to destroy or separate black people. Destruction is self-imposed sometimes for example Nigerians in south Africa. We fail to see how we are all one side because we are competing, and tribalism is still on high in the townships. We continue to sell drugs to our young, kill, torment and abuse our own people. Foreign concepts like xenophobia and democracy are being allowed to operate here as if we do not have older methods that made our countries prosper way before colonisation. rather than making names for new problems provide solutions instead for both old and new problems without seeking help elsewhere outside Africa. WE SHOULDN’T HATE OURSELVES. WE SHOULD BE ALLOWED TO BE. FOR IN THIS SYSYTEM OUR SOULS IS ALL WE WILL EVER TRULY OWN.WE CANNOT KEEP GIVING AWAY OUR POWER.
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 12 */
+
+    {
+        title: "LIVING ON BORROWED TIME",
+        content: `
+
+            <h2>LIVING ON BORROWED TIME</h2>
+
+            <p>
+                Time doesn’t seem to be healing the hurt or seeing us progress fast enough as one people. Cultural, moral and even physical degradation. Lost identities and a people moving away from their own. The people seem to have given up on their souls, promised better place somewhere after our untimely demise. Angry at the world because of the sequences we find ourselves. How do we learn to provide for ourselves? an ability that has been lost since the introduction of discriminatory laws and miseducation of the children. Our perception has been made to only be in one view, money, and the lack of financial education has seen money leave communities faster than it came. 
+They say time heals, but how is it that long after the abuse of our spirits we still feel victimized almost as if the freedom is nothing but an illusion. Freedom to consume. The freedom we got was supposedly allowed us to live as we should have in our own lands. Lands we cannot easily acquire. There must be a fight first our struggle must always be seen through bloodshed. The loss of innocent lives. We as black people have become so separate that we have come to hate self and mimic white people. It’s a white man’s world and it seems that the only way for a black man to be able to live the life they desire is to speak, behave and associate with the white man. Mimicking a mind-set for so long it has become a way of life.
+This is evident in the tongue off the children, fluent in English but the language of their ancestors lost somewhere between oppression and a need to survive for the black men. Time for money with an imbalance in skills development. The price of a proper education is not within the people’s tax bracket, so we just take the miseducation. The people are packed in public schools, without enough resources and failing curriculum that is designed to make us remember rather than equip learners and students for this fast-advancing world. It seems at school is only time we are ever willing to work with what we have never when it is to other matters relating to our future. Illiteracy is high in Africa In 2019,   Education and literacy are imperative to our success as a country, and when facing facts like 12% of adult South Africans not being able to read and write, we have to assess our role in changing this.   and those that do get proper education often migrant taking the knowledge they have outside their communities. The miseducation is killing our history. When our children knowing very little about their history, they are likely to make the same mistakes and undergo effects of past generations as their own.
+What put Sarah baartman on show, today our young queens are putting on show for free on social media and some even live on the streets all in the name of fashion, relevance and the need to survive. The system has successfully TAUGHT us to disrespect ourselves, brothers and sisters. we easily underestimate ourselves and there’s high levels of self-doubt while we believe someone can help us out of our situation , while setting the standards we can barely maintain. The fearlessness of the warriors that confronted with but spears an armed military has turned into these weak people that need validation, egotist people that even though losing the war pride themselves in still being alive. Said to be worthless and have a specific role chose for them. Roles determined by several factors set up to the system. Uniform behaviour, we all know that one guy doing the same thing e.g. we all know an alcoholic, abuser and academia.
+Industry through which most people depend on for their survival are labelled illegal or informal. Although they provide all the necessary products needed by people daily be it food or narcotics. All the knowledge that was passed down and gifted to the people written off as unofficial, irrelevant or not validated. the people are not allowed to participate without educational backing, free spectators waiting to compliment the next innovations often far from their reach but enough to create envy as many wish they all had access to first world products evident in people buying counterfeit rather than domestically produced clothing brands. The people working for the other creating more wealth neglecting their own forfeited wealth. Wealth the people have forgotten that they once had all they desired in this land, rank by tradition not material possession. Even respect is lost by elders to younger ones who possess more in terms of material. What I’m preaching is no longer about employment or land, it’s about breaking cycles.
+Cycles of self-destruction and selfishness our people put themselves in because of hurt and stagnation. these cycles built into our subconscious; we do things because we were taught. Making very few efforts to decide for ourselves whether this way of life is right or wrong. Very few people unable to fit the description of being free lacking the power or right to act, speak, or think as one would desire. But laws put in place make this impossible.  The country has one of the highest recidivism rates in the world. The primary cause of reoffending in South Africa appears to be the state’s unwillingness or inability to clear up areas of conflict in society which either breed criminality or fuel reoffending. Examples of these are inequality, poverty in an otherwise affluent society, chronic unemployment and government practices that marginalise and stigmatise people.   
+Being free means to be, not lacking or having more just being content. Content is a mental state and a mind free of subjection to any enforced belief or circumstance, not conflicted about when you are going to get the next score or just happy memories. Ego takes over when the funds are transferred to their deserving people, leading back to same destructive cycle caused by comparison. People who always have a point to prove.
+How long till the people can attain their birth right?  Over time warehouses going up but our people remain overcrowded in the ghettos and isolated in rural areas. Security has been removed from our environments. Today our sisters fear us her brothers because instead of protecting women we have been abusing them. Government has introduced new laws to protect women and children in South Africa from abuse and violence. The National Council on Gender-Based Violence and Femicide Bill was signed into law on 24 May 2024.
+The sober mind is embraced as if that is not how things should be. Sobriety is a superpower in our societies as people continue to spend the little that they have on intoxication. Addiction that keeps us in place as they make us less productive only watching time pass us by.  the strongest turn fragile at the hands of their own people, supplying drugs and introducing a lifestyle some find attractive because of hardships, it’s normal to envy things, what’s is not expecting these things to come easily or freely as capitalism suggests and as the saying says nothing for mahala. Execution is not really in our vocabulary. All efforts, means for survival to make it in this cruel world we now find ourselves. Funny part we(2000s) were not involved in our destruction. The mental emancipation of the people become a catalyst in the loss of the native identity, mental barriers that cause us to act and behave in a certain manner. it’s all predetermined. Yes, maybe the opportunities were presented but hard to work with minimal resources and unfavourable environments only leads to failure which in turn leads to what has become a sad generation.
+The age of great African scholars is dying, as less and less children care to understand why things are as the way they are. We have turn to the entertainers for comfort. Entertainment that goes with intoxication. Every opportunity we get we waste our lives away. Misdirected with signs pointing us in all the wrong directions. Limits are being introduced and if a system doesn’t hold you in place trust your own people to keep you there through criticism or straight hold you back because of their torn hearts, and we have adopted these features of feeling we deserve something for free. Only believe in the heroes with the whitest of skins. Vampires in front of a mirror. The lack of faith in our own people is surprising considering how much we admire everyone else including the coconuts but despise our brothers and sisters trying to progress. We are just not willing to learn. how this exploitation still goes on. Screens are not being used as a medium for learning but rather keep us blind to the programming, kept distracted at the mercy of those who exploit the resources Africa bears.
+Time the new faith. Another calendar year to try again, to grow. Hoping for better a tomorrow although no real law changes allow us to be better in fact they cause more distraction. All we are always sold are concepts freedom, democracy reconciliation, but no one cares about the people, the suffering continues to ensure that we appear as crazy in the eyes of those who don’t witness what we do in our societies. Black people you are strong, just don’t keep strengthening other people besides yourselves. we have been on our own, no is coming to save us. It’s time to give back the power to the people so they may be in control off their own destinies. Cause even birds have nests. 
+
+            </p>
+
+        `
+    },
+
+
+    /* PAGE 13 */
+
+    {
+        title: "I THINK I AM LOSING MY MIND MAMA",
+        content: `
+
+            <h2>I THINK I AM LOSING MY MIND MAMA</h2>
+
+            <p>
+               Waking up in survival mode as of most of our youth remains jobless and unemployment spread like a wildfire, trying to make sense of why it is my people and I find ourselves in this situation-products of a failing democracy. Poverty still a reality for most citizens, with most not being able to generate an income. questionable future, isn’t it? uncertainty, ignorance and hurt evident amongst most black people. How instead of the wealth and wisdom we only inherited hurt from the milk of our mothers. How the children and women suffer more pain to this than those responsible for the situation in which we find ourselves in today.
+ 6 945 people were murdered in South Africa between July 1 and September 30, and expressed outrage that out of that figure, 881 people were women and 293 were children. This also highlights the ongoing war against black men a situation that seems as if doesn’t even see exist and it continues to leave our people in a disadvantaged position. A society where the mental health is allowed to waste away and substances are allowed in the streets killing the potential productivity of the people while cutting their lives short. Our communities becoming less safe and people thinking temporary relief is the answer instead of depending on themselves and establishing a system that favours them or at least gives them a fighting chance. 
+Knowing that tomorrow the struggle continues, I will still suffer, and the efforts of the healers is going away as alcohol continues to wash away our ancestors’ efforts. The democracy we live under today is not what the freedom fighters died for. It seems as if democracy is just full customer rights rather than what freedom is supposed to mean. We were just granted the access to the luxuries white people long enjoyed. Freedom should be sustainable. It should free us from the consumer effect.  ‘The Black race is a slave – pure and simple – an economic slave. I am frightened and disgusted at the same time, at a people who produce nothing and consume everything that others produce. We are always ready to make excuses about the inventions and products our people have perfected in long gone eras, but which have been stolen from us, and the ones who stole them have gone on to become very rich’
+A democracy that makes the development that took place during apartheid seem more progressive. Illegal immigrants shacked up in our townships. Better legislature will help in Getting this policy right could help with South Africa’s economic recovery, increase regional prosperity, and heighten security for citizens and tourists alike. A survival mode of sinking into the pain. embodying it. Unexpressed emotions and therapy that was never given. The people are walking trauma bodies separated from their true self and circumstances keep them further away from being their true selves. With religion taking them further from their true nature, waiting for opportunity or faithful to some higher power to provide rather than make their own moves. The little they make still leaves community rather than advance it. Although money rotates faster in townships there’s little improvement as more and more people move into townships. The freedom of belief, faith exposing them to foreign gods rather than self-belief leading to their inaction. 
+A people that finds themselves having to beg for help. Inactive people hoping for financial aid to change their circumstances never willing to invest because there’s always something to do or envied. The future is in all our hands, but with family conflicts further separating our people mostly because money it becomes hard to build a prosperous nation for all. We have been divided but we must ask ourselves if we accept to be conquered, to give in and accept to continue living in this modernised system where lives can be bought or do we choose to control of our fates. Is the wealth that we are after worth it if it costs us our mental and physical health. Show me an institution that was built for the benefit the people and not for advancing western perspectives. All these built to keep us systematically oppressed.
+   They subsequently will experience failure to achieve academically, and then fail to perform adequately on scholastic achievement tests. Because of the frustration from being stressed and inadequately cared for, they will fail to attend school. Eventually they will drop out of school. Many Black children and youth will become involved with drugs- either to medicate often unrecognized Major depression, or to sell drugs to solve their own or their family’s financial difficulties. Perhaps both. The drugs will be used to suspend Briefly a grinding sense of hopelessness and doom. Then addiction sets In. Other Black children and youth will become obsessed with sexual Activity to compensate for a profound sense of unmet dependency needs. This view seems like a prophecy.
+All these institutions of learning that teach of white dominance and principles that are adopted from the west, the police to keep us in order-black on black violence set up by a system because self-hate runs deep, colour institutions-educational, health and commercial-that eliminate black people from participating because they are ‘private’. Who is really benefiting especially within these borders from the existence of these institutions. Inequality still runs high and the people at the bottom feeling the effects of the system more than any other persons that are living in this country constantly being denied the simple right to live their lives to their fullest, so they find other escapes. Literacy being the only key we were handed, learn then you would be able to make it in this life being the only ultimatum in our country.
+Nobody should be made to believe they are stupid because the world of work has its required skill sets. Who and for what purpose were these institutions built? one purpose only -clearly not for the not for the benefit of our people but financial gain. Surely these reasons haven’t changed and until we build our own, we will keep working hard so we can enrich stakeholders who couldn’t care any less about us. Here we were chasing qualifications that taught us to further worship the white man, overlooking our own prosperous findings. Knowledge from our old university kept from us with what being taught being what’s relevant. Even after obtaining these qualifications our future is still uncertain. Youth unemployment at an alarming rate of 68% because we are waiting for jobs rather than creating. Who knows what we want if not ourselves.
+The lives of the people hanging are in the balance with almost everything having to be fought for or given. And when we take to the streets we are labelled savages, enemies of progress or barbarians. The lives of our sister at danger at every turn, they murdered, abused and used by conflicted sick men. Even when she’s unnoticed she is still in fear. But you can’t blame her, we have seen males performing outrageous acts. While the cooperation’s grow stronger and recruiting more people, security is not available as mothers’ hearts race whenever they see men along their way to go secure a monthly stipend , for some their children’s only hope. The children mind stolen. Guided by trends and material. In South Africa, a father is how much money he can provide at the end of the month because we emphasise provider roles and financial success as primary measures of a father’s worth. If we are not careful, we will not have lost land only but our future generations as they lose knowledge of self and exposed to more western ways of living. The absence of fathers affects the development of children and has had detrimental consequences for families and for society as a whole.  
+It is not only Africans dying by their heritage as well. We are driven by our exterior environment while mind and body take heavy damage as we continue to consume harmful substances and information. In South Africa 40% of men have beaten their partners and one in four has committed sexual crimes. This is what is considered normal.
+It is as if we have accepted that we will forever make for some more money for someone, and they’ll just give us share. A big boss, baas, legowa, umlungu. The one with the German car you wish you had. This means someone will always have a say in your life, power over your financial state the determinant of your level of content. Covid 19 saw many lose their jobs because companies prefer profits over the livelihoods of their employees. You die today, you are replaced tomorrow. Your financial state determines your mental state, the biochemistry that your brain operates. The broke are angry look in townships. Blind to the truth or maybe uninterested in knowing the facts. Sheep in need of a shepherd to guide us through life, lucky are those born white or those that fought their way to the top unfortunate we lost a few along the way. 
+They have systematically formatted our memory now the new owner must use the people as puppets, workers, yes man, servants, evidence that we are losing not only our minds but our rightful place in this land. We have lost a lot already under an illusion, the mind believed it was free and tried to be. Only to find that it’s getting worse the people have lost their ways for one they were taught and believe.  The term “township” has no formal definition but is commonly understood to refer to the underdeveloped, usually (but not only) urban, residential areas that during Apartheid were reserved for non-whites (Africans, Coloureds and Indians) who lived near or worked in areas that were designated ‘white only’ (under the Black Communities Development Act (Section 33) and Proclamation R293 of 1962, Proclamation R154 of 1983 and GN R1886 of 1990 in Trust Areas, National Home lands and Independent States). Is this the view we want to give about our homes. When shall the student be the master. How do we gain when most things are set up to keep us back? In this race for life, it’s hard to win when you are starting further back. The place I live in is already behind that’s why we want to move to a better one, if we only went back in time understand why we are the way we are.
+Generations of suffering and with the advancement of technology we are losing ourselves earlier and faster due to early exposure. AI is also expected to have a disruptive effect on the composition of the labour market. We can’t research why it is that we find ourselves repeating the same cycles and refusing to change ourselves although the world is. for us to progress, we need to understand the reasons behind this circumstance that the people find themselves in, came to be. Why our brains operate on this program and what this means for the survival of the people. Everything starts with a thought. We just need to put in the effort to make sure we change our circumstances. We need to ask ourselves HOW DO I HEAL FROM THE PAST SO I MAY PROGRESS AND ADD VALUE TO MY COMMUNITY? HOW DO I PRESERVE MY CULTURE SO MY CHILDREN DO NOT ADOPT A FOREIGN CULTURE OR RELIGION? DO I CHOOSE TO LIVE OUT THE REST OF MY LIFE IN SURVIVAL MODE OR DO I STOP TAKING THE SAME ACTIONS THAT WILL TAKE ME BACK TO THE SAME POINT? SUFFERING.
+REMEMBER “BLACK CHILD YOUR ON YOUR OWN”
+© (Ndzalo Marule). I don’t like it here: views of a disadvantaged black youth
+
+            </p>
+
+        `
+    }
+
+];
+
+
+/* ============================================================
+   STATE
+============================================================ */
+
+let currentPage = 0;
+
+let fontSize = 18;
+
+
+/* ============================================================
+   RENDER PAGE
+============================================================ */
+
+function renderPage() {
+
+    const page = pages[currentPage];
+
+    const pageElement =
+        document.getElementById("pageContent");
+
+    pageElement.innerHTML = page.content;
+
+    pageElement.className = "page";
+
+    if (page.cover) {
+        pageElement.classList.add("cover-page");
+    }
+
+    /* Page number */
+
+    const number = document.createElement("div");
+
+    number.className = "page-number";
+
+    number.innerText =
+        `${currentPage + 1}`;
+
+    pageElement.appendChild(number);
+
+
+    /* Counter */
+
+    document.getElementById("counter").innerText =
+        `Page ${currentPage + 1} of ${pages.length}`;
+
+
+    /* Progress */
+
+    const progress =
+        ((currentPage + 1) / pages.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+
+    /* Buttons */
+
+    document.getElementById("previous").disabled =
+        currentPage === 0;
+
+    document.getElementById("next").disabled =
+        currentPage === pages.length - 1;
+
+
+    /* Highlight TOC */
+
+    const tocButtons =
+        document.querySelectorAll(".toc button");
+
+    tocButtons.forEach((button, index) => {
+
+        button.classList.toggle(
+            "active",
+            index === currentPage
+        );
+
+    });
+
+
+    /* URL */
+
+    history.replaceState(
+        null,
+        "",
+        "#page=" + (currentPage + 1)
+    );
+
+
+    /* Remember page */
+
+    localStorage.setItem(
+        "bookPage",
+        currentPage
+    );
+
+}
+
+
+/* ============================================================
+   NEXT PAGE
+============================================================ */
+
+function nextPage() {
+
+    if (currentPage < pages.length - 1) {
+
+        currentPage++;
+
+        renderPage();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+}
+
+
+/* ============================================================
+   PREVIOUS PAGE
+============================================================ */
+
+function previousPage() {
+
+    if (currentPage > 0) {
+
+        currentPage--;
+
+        renderPage();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+}
+
+
+/* ============================================================
+   TABLE OF CONTENTS
+============================================================ */
+
+function createTOC() {
+
+    const toc =
+        document.getElementById("toc");
+
+    pages.forEach((page, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.innerText =
+            page.title
+            ? `${index + 1}. ${page.title}`
+            : `Page ${index + 1}`;
+
+        button.onclick = function() {
+
+            currentPage = index;
+
+            renderPage();
+
+            if (window.innerWidth < 800) {
+                toggleMenu();
+            }
+
+        };
+
+        toc.appendChild(button);
+
+    });
+
+}
+
+
+/* ============================================================
+   DARK MODE
+============================================================ */
+
+function toggleDark() {
+
+    document.body.classList.toggle("dark");
+
+    const dark =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "darkMode",
+        dark
+    );
+
+}
+
+
+/* ============================================================
+   FONT SIZE
+============================================================ */
+
+function changeFont(amount) {
+
+    fontSize += amount;
+
+    if (fontSize < 14)
+        fontSize = 14;
+
+    if (fontSize > 30)
+        fontSize = 30;
+
+    document.querySelector(".page").style.fontSize =
+        fontSize + "px";
+
+    localStorage.setItem(
+        "fontSize",
+        fontSize
+    );
+
+}
+
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+
+function toggleMenu() {
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+/* ============================================================
+   KEYBOARD NAVIGATION
+============================================================ */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "ArrowRight" ||
+            event.key === "PageDown"
+        ) {
+
+            nextPage();
+
+        }
+
+        if (
+            event.key === "ArrowLeft" ||
+            event.key === "PageUp"
+        ) {
+
+            previousPage();
+
+        }
+
+    }
+);
+
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+function searchBook() {
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
+
+    if (!search) return;
+
+
+    const result =
+        pages.findIndex(page =>
+            page.content
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    if (result !== -1) {
+
+        currentPage = result;
+
+        renderPage();
+
+    } else {
+
+        alert(
+            "The search term was not found in the book."
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+   RESTORE SETTINGS
+============================================================ */
+
+function restoreSettings() {
+
+    const savedPage =
+        localStorage.getItem("bookPage");
+
+    if (savedPage !== null) {
+
+        currentPage =
+            parseInt(savedPage);
+
+    }
+
+
+    const savedFont =
+        localStorage.getItem("fontSize");
+
+    if (savedFont !== null) {
+
+        fontSize =
+            parseInt(savedFont);
+
+    }
+
+
+    const dark =
+        localStorage.getItem("darkMode");
+
+    if (dark === "true") {
+
+        document.body.classList.add("dark");
+
+    }
+
+}
+
+
+/* ============================================================
+   OPEN PAGE FROM URL
+============================================================ */
+
+function loadURLPage() {
+
+    const hash =
+        window.location.hash;
+
+    if (hash.startsWith("#page=")) {
+
+        const number =
+            parseInt(
+                hash.replace("#page=", "")
+            );
+
+        if (
+            number >= 1 &&
+            number <= pages.length
+        ) {
+
+            currentPage = number - 1;
+
+        }
+
+    }
+
+}
+
+
+/* ============================================================
+   START APPLICATION
+============================================================ */
+
+restoreSettings();
+
+loadURLPage();
+
+createTOC();
+
+renderPage();
+
+</script>
+
+</body>
+</html>
